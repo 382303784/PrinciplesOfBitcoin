@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/pb.css"/>
+    <style>
+
+        body {
+            margin: 30px;
+        }
+
+        #idInput {
+            width: 500px;
+        }
+
+        #result {
+            padding: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<label>发送方的私钥
+</label>
+<textarea class="form-control" id="senderPrivateKey">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiI1qvBhHIl6VTDTH799uY1Yp6
+lPobGzGJ2rwiQEVe7vJhsWW31V5ZZtG0Szkap4HnnTgSUYe256V6DWWGDi4plIG2SayIFerKqS1P
+4716OXwz0AQi45FnVDTKUC0iY5QLr/ybwrxYJDH84l3OTE7yDkoGjzYyh0zR9XEPJqF1PCO+eqv4
+8thiALeRgOD+qrdYSofO1xgIsYqFzwNg7Vz+v1QJyc8EWF7oFxajuem2NtsRTyjgh5MvIkbcdRUV
+H3lPidfoMpQowsiFLEPx8/Q6KEg8ZyJVcNsbp8dasPC99EIHUHY7Y6N0mqD/4XV3UVVhzoiToMqa
+avihy604DA6vAgMBAAECggEAdNyOjAAP6UiDvGySTk3DVVD0Uo32Bnt/JSEm4Hj6hwYqZQd7jRiY
+vE9DbnOZYQDCvLGwrGNfMhGcT3BAcHLgCtAi/cP0OtGxPQjaw+4dr26neqC/mnXzY0pqEjffkB29
+ov7hT1L4dX8BGIf/nKWbcROjfz7RjXG/iMUjDAyH6vqaOUpILMROGEgeN7CtdfdLf9Qv/uK7a1nl
+qwnHRvN+veA7PIy3sbOrNRkH3tzB8H+VCBJNHZLYUfiodNRVdl+pz90x532IR6MHdQybJAxsE/tN
+0ne4yVs1kVJrHoRr3YXNzv2X6CqIX/mOYvBeCK1s8FWzsq9rUlOCALE24Pe3wQKBgQDjpOhQHTi5
+IsHo7En362TaX8U7+VK7OqxxarJ37d0gRhQg+X6uIw81UcDJpWlThvZDVlHutafZlyeFawECw0ni
+Rzaa8tSIyJha6pSKo1KRndW0PJhfflDCteCDEeHrBBjwOkmi7hfLe/vvAVSE9e0ftuRXH4gJJt7g
+banmycjV6QKBgQC2VZiuU/lzZjuV086sr8lmTt4MaHtPZW+vZaUQB84yF242T6jdS58n2UzjGFjd
+C13JAdwCbtuH4XbDthrEEVXF8nUA4kse1iSqpleOCJcFseVaSCPaT+rWXMKgCz6cGTButy2Xoizy
+8nl18UpF7yx3PDXv8HhpV0j0bugBKtQo1wKBgBLXIyL+SCOKbOIKLFUIdmBcbMZ57A7y3DLG0d57
+IUH6is/v1jwzSp7vFTWbKwxurxMDoeRPxISNrgesw3inEQZZPnu0fUKU14cuwvx2Z+8FURqJqVK9
+8ZEr3Fj8seXxgN7g9Bc3/WAp8r/lLEmU0Ps+98b+JRQc03VfniArsyOBAoGBALPBW06yFwD/zsp9
+EAoLG4CzTBHrh3XUyPCgQsS1DUEw/ESq8A2LGhMNFdHlFOaG6CTcomv7oo4pZw63H1ggxvDpgRQo
+BGsYLvnWGAc8zLaelUAWUtJNa3V96Zoiu8zkwGzGRjpxdeLlzXzLLrAXhTzfrUUpS2x+0ru4Ax3z
+fUntAoGAeFfa3wU5Avlf9lD9MmBZGv/R4+u5Hgy3xZY16o4Q8Flvju8u6FxlsxhGsOJzClNqpraq
+hSEux/HcdvSonLhKkNBhmWr/QTkU8dCt8Y1BCnCF/Fmishwi7zb0Q+dFTuk92s0R/QGIwucCghbe
+K89DLYK9Uv/6rkbxRig8efdxVn4=
+-----END PRIVATE KEY-----</textarea>
+
+<label>发送方的公钥
+</label>
+<textarea class="form-control" id="senderPublicKey">
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoiNarwYRyJelUw0x+/fbmNWKepT6Gxsx
+idq8IkBFXu7yYbFlt9VeWWbRtEs5GqeB5504ElGHtueleg1lhg4uKZSBtkmsiBXqyqktT+O9ejl8
+M9AEIuORZ1Q0ylAtImOUC6/8m8K8WCQx/OJdzkxO8g5KBo82ModM0fVxDyahdTwjvnqr+PLYYgC3
+kYDg/qq3WEqHztcYCLGKhc8DYO1c/r9UCcnPBFhe6BcWo7nptjbbEU8o4IeTLyJG3HUVFR95T4nX
+6DKUKMLIhSxD8fP0OihIPGciVXDbG6fHWrDwvfRCB1B2O2OjdJqg/+F1d1FVYc6Ik6DKmmr4ocut
+OAwOrwIDAQAB</textarea>
+
+<label>接收方公钥
+</label>
+<textarea class="form-control" id="receiverPublicKey">
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwkzvQb12Tf8NBt80wqdM9QEqUsQ/EsrY
+SDvXtU/rvqttzwLxfw+u6eGHgvtlrelHcoNYEa9WFIAruZ8FHC+WZfvVySH1+0SVIZgUsp+8IE7f
+LEg4s5qJW9Y9a/wR7ZwOaH0dbdALFuTscKEW53b3TMZQr8/lyYTM7nysC31llqkHPOF0CMEqZaaO
+5o2pvQ7j6jxlKYBrJ1Pz7W4/TtPF/ZevzmImt/6tlRgbQptxSjyZx8QaFCeAXdlcyGeRgP1H5ecH
+FM8gobN1mWrCV/JPs6Z6XLuMjPQ51c+2qSvpDeCxoJ355Tw/cexbdAlOo4YwyxTTfQeC8xF0L4VV
+gN1zXwIDAQAB</textarea>
+
+<label>转账信息
+</label>
+
+<input type="text" class="form-control" id="idInput" placeholder="请输入内容">
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" onclick="addGenesis()">添加封面</button>
+    <button type="button" class="btn btn-default" onclick="addaccount()">添加记录</button>
+    <button type="button" class="btn btn-default" onclick="check()">校验数据</button>
+</div>
+
+<!--用于结果展示-->
+<p class="bg-info" id="result"></p>
+
+<table class="table">
+    <caption></caption>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>内容</th>
+        <th>hash值</th>
+        <th>工作量证明</th>
+        <th>上一个hash</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+</table>
+
+
+<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/pb.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jsrsasign-all-min.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+
+    function addGenesis() {
+        var content = $("#idInput").val();
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+
+        $.post("addGenesis","genesis="+content,function (data) {
+            $("#result").html(data)
+            showlist()
+            $("#idInput").val("")
+
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function addaccount() {
+        var senderPrivateKey = $("#senderPrivateKey").val();
+        var senderPublicKey = $("#senderPublicKey").val();
+        var receiverPublicKey = $("#receiverPublicKey").val();
+        var content = $("#idInput").val();
+
+
+        // 获取私钥
+        var prvKey = KEYUTIL.getKey(senderPrivateKey);
+        // 指定算法
+        var sig = new KJUR.crypto.Signature({"alg": "SHA256withRSA"});
+        // 初始化私钥
+        sig.init(prvKey);
+        // 传入原文
+        sig.updateString(content)
+        // 生成签名
+        var sigValueHex = sig.sign()
+        console.log(sigValueHex);
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+        //发起请求
+        $.post("addaccount",{senderPublicKey:senderPublicKey,
+                receiverPublicKey:receiverPublicKey,
+                content:content,
+                signaturedData:sigValueHex}
+            , function (data){
+                //展示结果
+                $("#result").html(data)
+                //添加完成后直接展示数据
+                showlist();
+                //清除结果
+                $("#idInput").val("")
+                //进度条隐藏
+                loading.baosight.hidePageLoadingMsg()
+            })
+    }
+
+    function addaccount2() {
+        var content = $("#idInput").val();
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+
+        $.post("addaccount","account="+content,function (data) {
+            $("#result").html(data)
+            showlist()
+            $("#idInput").val("")
+
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function check() {
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+
+        $.get("check",function (data) {
+            $("#result").html(data)
+
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function showlist() {
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+
+        $.get("showlist",function (data) {
+            $("#tbody").html("");
+            for (var i = 0; i <data.length ; i++) {
+                var Block=data[i];
+                var id=Block.id;
+                var content=Block.content;
+                var hash=Block.hash;
+                var nonce=Block.nonce;
+                var preHash=Block.prehash;
+
+                $("#tbody").append("<tr><th>"+id+"</th><td>"+content+"</td><td>"+hash+"</td><td>"+nonce+"</td><td>"+preHash+"</td></tr>")
+            }
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    $(function () {
+        showlist()
+    })
+
+</script>
+
+</body>
+</html>
