@@ -55,11 +55,11 @@ public class Transaction {
         this.content = content;
     }
 
-    public String getSignaturedDate() {
+    public String getSignaturedData() {
         return signaturedData;
     }
 
-    public void setSignaturedDate(String signaturedData) {
+    public void setSignaturedData(String signaturedData) {
         this.signaturedData = signaturedData;
     }
 

@@ -16,8 +16,25 @@ public class Accountbook {
 
     private ArrayList<Block> list = new ArrayList<>();
 
+    private Accountbook() {
+        init();
+    }
+
+    public static volatile Accountbook instance;
+
+    public static Accountbook getInstance(){
+        if(instance==null){
+            synchronized (Accountbook.class) {
+                if (instance == null) {
+                    instance = new Accountbook();
+                }
+            }
+        }
+        return instance;
+    }
+
     //构造的时候把数据读出来
-    public Accountbook() {
+    public void init() {
         try {
             File file = new File("a.json");
             if (file.exists() && file.length() > 0) {
@@ -100,7 +117,6 @@ public class Accountbook {
         }
     }
 
-
     public String check() {
 
         StringBuilder sb = new StringBuilder();
@@ -140,5 +156,14 @@ public class Accountbook {
             }
         }
         return sb.toString();
+    }
+
+    // 和本地的区块链进行比较,如果对方的数据比较新,就用对方的数据替换本地的数据
+    public void compareData(ArrayList<Block> newList) {
+        // 比较长度, 校验
+        if (newList.size() > list.size()) {
+            list = newList;
+            savedisk();
+        }
     }
 }

@@ -80,6 +80,13 @@ gN1zXwIDAQAB</textarea>
     <button type="button" class="btn btn-default" onclick="check()">校验数据</button>
 </div>
 
+<input type="text" class="form-control" id="idnode" placeholder="请输入内容">
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-default" onclick="regist()">添加节点</button>
+    <button type="button" class="btn btn-default" onclick="conn()">建立连接</button>
+    <button type="button" class="btn btn-default" onclick="broadcast()">发送广播</button>
+    <button type="button" class="btn btn-default" onclick="syncData()">同步</button>
+</div>
 <!--用于结果展示-->
 <p class="bg-info" id="result"></p>
 
@@ -141,7 +148,7 @@ gN1zXwIDAQAB</textarea>
         sig.updateString(content)
         // 生成签名
         var sigValueHex = sig.sign()
-        console.log(sigValueHex);
+        console.log("sigValueHex:"+sigValueHex);
 
         //进度条显示
         loading.baosight.showPageLoadingMsg(false);
@@ -208,6 +215,71 @@ gN1zXwIDAQAB</textarea>
 
                 $("#tbody").append("<tr><th>"+id+"</th><td>"+content+"</td><td>"+hash+"</td><td>"+nonce+"</td><td>"+preHash+"</td></tr>")
             }
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function regist(){
+        //用户输入的内容
+        var content = $("#idnode").val();
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+        //发起请求
+        $.post("regist", "node=" + content, function (data){
+            //展示结果
+            $("#result").html(data)
+            //添加完成后直接展示数据
+            showlist();
+            //清除结果
+            $("#idnode").val("")
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function conn(){
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+        //发起请求
+        $.post("conn", function (data){
+            //展示结果
+            $("#result").html(data)
+            //添加完成后直接展示数据
+            showlist();
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    function broadcast(){
+        //用户输入的内容
+        var content = $("#idnode").val();
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+        //发起请求
+        $.post("broadcast", "msg=" + content, function (data){
+            //展示结果
+            $("#result").html(data)
+            //添加完成后直接展示数据
+            showlist();
+            //清除结果
+            $("#idnode").val("")
+            //进度条隐藏
+            loading.baosight.hidePageLoadingMsg()
+        })
+    }
+
+    //同步
+    function syncData(){
+
+        //进度条显示
+        loading.baosight.showPageLoadingMsg(false);
+        //发起请求
+        $.post("syncData", function (data){
+            //展示结果
+            $("#result").html(data)
+
             //进度条隐藏
             loading.baosight.hidePageLoadingMsg()
         })
