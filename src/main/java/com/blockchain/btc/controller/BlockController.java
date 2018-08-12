@@ -3,11 +3,13 @@ package com.blockchain.btc.controller;
 import com.blockchain.btc.BtcApplication;
 import com.blockchain.btc.bin.Accountbook;
 import com.blockchain.btc.bin.Block;
+import com.blockchain.btc.bin.MessageBean;
 import com.blockchain.btc.bin.Transaction;
 import com.blockchain.btc.websocket.MyClient;
 import com.blockchain.btc.websocket.MyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +48,11 @@ public class BlockController {
                 ObjectMapper objectMapper = new ObjectMapper();
                 String transactionString = objectMapper.writeValueAsString(transaction);
 
+                //广播交易数据
+                MessageBean messageBean = new MessageBean(2, transactionString);
+                String msg = objectMapper.writeValueAsString(messageBean);
+
+                myService.broadcast(msg);
                 accountbook.addaccount(transactionString);
                 return "添加记录成功";
             }else {
@@ -65,6 +72,12 @@ public class BlockController {
 
     @RequestMapping(value = "/check", method = RequestMethod.GET)
     public String check(){
+
+        String check = accountbook.check();
+
+        if (StringUtils.isEmpty(check)) {
+            return "数据是安全的";
+        }
 
         return accountbook.check();
 

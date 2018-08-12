@@ -69,6 +69,7 @@ public class Accountbook {
         savedisk();
     }
 
+    //挖矿
     private int mine(String content){
         for(int i=0;i<Integer.MAX_VALUE;i++){
             String s = HashUtils.sha256(i + content);
