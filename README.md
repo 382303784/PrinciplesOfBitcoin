@@ -1,4 +1,4 @@
-# -Bitcoin-principle-project-based-on-java-implementation
+# Principles Of Bitcoin
 项目简介：
 
  1.这是一个实现比特币底层原理的项目，使用springBoot搭建框架，使用了bootStrap搭建了前端页面，使用webSocket模拟各个节点点对点广播和通信，使用Ajax进行前后端通信，使用RSA非对称加密；
